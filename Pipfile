@@ -4,8 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+torch = "*"
+torchvision = "*"
+matplotlib = "*"
+selenium = "*"
+regex = "*"
 
 [dev-packages]
+black = "*"
 
 [requires]
-python_version = "3.6"
+
+[pipenv]
+allow_prereleases = true

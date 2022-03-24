@@ -7,12 +7,7 @@ import gym
 import numpy as np
 import torch
 
-from train \
-    import \
-    data_transform, \
-    available_actions, \
-    build_network, \
-    DATA_DIR, MODEL_FILE
+from train import data_transform, available_actions, build_network, DATA_DIR, MODEL_FILE
 
 
 def nn_agent_play(model, device):
@@ -22,21 +17,10 @@ def nn_agent_play(model, device):
     :param device: the cuda device
     """
 
-    env = gym.make('CarRacing-v0')
-
-    # use ESC to exit
-    global human_wants_exit
-    human_wants_exit = False
-
-    def key_press(key, mod):
-        """Capture ESC key"""
-        global human_wants_exit
-        if key == 0xff1b:  # escape
-            human_wants_exit = True
+    env = gym.make("CarRacing-v1")
 
     # initialize environment
     state = env.reset()
-    env.unwrapped.viewer.window.on_key_press = key_press
 
     while 1:
         env.render()
@@ -68,12 +52,8 @@ def nn_agent_play(model, device):
         if terminal:
             state = env.reset()
 
-        if human_wants_exit:
-            env.close()
-            return
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     dev = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     m = build_network()
     m.load_state_dict(torch.load(os.path.join(DATA_DIR, MODEL_FILE)))

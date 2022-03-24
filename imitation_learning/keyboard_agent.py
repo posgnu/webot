@@ -14,29 +14,29 @@ from util import DATA_DIR, DATA_FILE
 
 def key_press(key, mod):
     global human_agent_action, human_wants_restart, human_wants_exit, human_sets_pause, acceleration
-    if key == 0xff0d:  # enter
+    if key == 0xFF0D:  # enter
         human_wants_restart = True
 
-    if key == 0xff1b:  # escape
+    if key == 0xFF1B:  # escape
         human_wants_exit = True
 
     if key == 0x020:  # space
         human_sets_pause = not human_sets_pause
 
-    if key == 0xff52:  # up
+    if key == 0xFF52:  # up
         acceleration = True
         human_agent_action[1] = 1.0
         human_agent_action[2] = 0
-    if key == 0xff54:  # down
+    if key == 0xFF54:  # down
         human_agent_action[2] = 1  # stronger brakes
 
-    if key == 0xff51:  # left
+    if key == 0xFF51:  # left
         human_agent_action[0] = -1.0
 
         # no acceleration while turning
         human_agent_action[1] = 0.0
 
-    if key == 0xff53:  # right
+    if key == 0xFF53:  # right
         human_agent_action[0] = +1.0
 
         # no acceleration when turning
@@ -45,20 +45,20 @@ def key_press(key, mod):
 
 def key_release(key, mod):
     global human_agent_action, acceleration
-    if key == 0xff52:  # up
+    if key == 0xFF52:  # up
         acceleration = False
         human_agent_action[1] = 0.0
 
-    if key == 0xff54:  # down
+    if key == 0xFF54:  # down
         human_agent_action[2] = 0.0
 
-    if key == 0xff51:  # left
+    if key == 0xFF51:  # left
         human_agent_action[0] = 0
 
         # restore acceleration
         human_agent_action[1] = acceleration
 
-    if key == 0xff53:  # right
+    if key == 0xFF53:  # right
         human_agent_action[0] = 0
 
         # restore acceleration
@@ -77,7 +77,7 @@ def rollout(env):
 
     # if the file exists, append
     if os.path.exists(os.path.join(DATA_DIR, DATA_FILE)):
-        with gzip.open(os.path.join(DATA_DIR, DATA_FILE), 'rb') as f:
+        with gzip.open(os.path.join(DATA_DIR, DATA_FILE), "rb") as f:
             observations = pickle.load(f)
     else:
         observations = list()
@@ -120,7 +120,7 @@ def rollout(env):
                 if not os.path.exists(DATA_DIR):
                     os.mkdir(DATA_DIR)
 
-                with gzip.open(data_file_path, 'wb') as f:
+                with gzip.open(data_file_path, "wb") as f:
                     pickle.dump(observations, f)
 
             print("timesteps %i reward %0.2f" % (total_timesteps, total_reward))
@@ -134,8 +134,8 @@ def rollout(env):
             time.sleep(0.1)
 
 
-if __name__ == '__main__':
-    env = gym.make('CarRacing-v0')
+if __name__ == "__main__":
+    env = gym.make("CarRacing-v1")
 
     env.render()
     env.unwrapped.viewer.window.on_key_press = key_press
