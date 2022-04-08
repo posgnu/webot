@@ -26,7 +26,7 @@ demo = {
 state = {
     time,
     action,
-    image // RGB array,
+    image: list[list[(R, G, B)]], // RGB 2D array
     dom
 }
 ```
