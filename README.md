@@ -1,5 +1,13 @@
 # webot
 
+## Directory structure
+* `data`: this directory stores a series of state and action pairs as a gzip
+* `output`: this directory also stores a series of state and action but it additionally includes other metadata for showing it on the web.
+* `behavior_cloning`: Implements the behavior cloning agent
+* `computergym`: gym environment for computer control task
+* `record.py`: recording server script that can record expert demonstrations on MiniWob++
+* `viewer`: web page source code for viewing demonstration data in `output` directory
+
 ## Setup
 Setup Python environment
 ```shellscript
@@ -36,9 +44,9 @@ state = {
 * Start recording server
 ```shell script
 $ mkdir out
-$ ./record.py out
+$ ./record.py out/ data/
 ```
-* Open local miniWoB environment with `record` get paramter
+* Open local miniWoB environment with `record` get paramter. You should use miniwob environment in `computergym` directory.
 ```
 file:///path/to/computergym/miniwob/miniwob_interface/html/miniwob/click-test.html?record=true
 ```

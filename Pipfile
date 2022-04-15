@@ -9,6 +9,7 @@ torchvision = "*"
 matplotlib = "*"
 selenium = "*"
 regex = "*"
+computergym = {editable = true, path = "./computergym"}
 
 [dev-packages]
 black = "*"

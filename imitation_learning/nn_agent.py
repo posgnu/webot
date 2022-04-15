@@ -28,6 +28,7 @@ def nn_agent_play(model, device):
         state = np.moveaxis(state, 2, 0)  # channel first image
 
         # numpy to tensor
+        
         state = torch.from_numpy(np.flip(state, axis=0).copy())
         state = data_transform(state)  # apply transformations
         state = state.unsqueeze(0)  # add additional dimension

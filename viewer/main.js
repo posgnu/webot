@@ -153,13 +153,13 @@ $(function () {
   function drawAction(action, ctx) {
     //console.log(action);
     var t = action.type
-    if (t == 'right' || t == 'left' || t == 'up' || t == 'down' || t == 'mousedown' || t == 'mouseup') {
+    if (t == 'click' || t == 'dblclick' || t == 'mousedown' || t == 'mouseup') {
       ctx.beginPath();
       ctx.arc(
         (action.cx !== undefined ? action.cx : action.x),
         (action.cy !== undefined ? action.cy : action.y), 5, 0, 2 * Math.PI);
       ctx.fillStyle = {
-        'right': 'blue', 'left': 'blue', 'up': 'blue', 'down': 'blue',
+        'click': 'blue', 'dblclick': 'blue',
         'mousedown': 'green', 'mouseup': 'red'
       }[t];
       ctx.fill();
