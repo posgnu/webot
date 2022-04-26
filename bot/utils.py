@@ -5,7 +5,7 @@ import numpy as np
 import computergym
 
 NUM_OF_WORKERS = 10
-NUM_OF_EPISODES = 500
+NUM_OF_EPISODES = 5000
 
 DATA_FILE = "bot_data.gzip"
 DATA_DIR = "../data"
@@ -16,15 +16,16 @@ def find_element_by_tag(tag: str, dom_elements: list):
     for element in dom_elements:
         if element.tag == tag:
             elements.append(element)
-    
+
     return elements
+
 
 def find_element_by_text(text: str, dom_elements: list):
     elements = []
     for element in dom_elements:
         if element.text == text:
             elements.append(element)
-    
+
     return elements
 
 
