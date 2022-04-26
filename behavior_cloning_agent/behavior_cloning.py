@@ -43,6 +43,11 @@ class BehaviorCloning:
 
     def build_model(self, vocab):
         self.m = Net(vocab, self.dev)
+        if torch.cuda.device_count() > 1:
+            print("Let's use", torch.cuda.device_count(), "GPUs!")
+            # dim = 0 [30, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
+            self.m = nn.DataParallel(self.m)
+
         self.m = self.m.to(self.dev)
 
     def restore(self):
@@ -51,7 +56,7 @@ class BehaviorCloning:
         logging.info(f"Restore from {vocab_path}")
         self.vocab = torch.load(vocab_path)
 
-        self.m = Net(len(self.vocab))
+        self.build_model(self.vocab)
 
         model_path = os.path.join(DATA_DIR, self.env_name + "_" + MODEL_FILE)
         logging.info(f"Restore from {model_path}")
