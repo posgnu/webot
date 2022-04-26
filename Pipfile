@@ -10,9 +10,11 @@ matplotlib = "*"
 selenium = "*"
 regex = "*"
 computergym = {editable = true, path = "./computergym"}
+torchtext = "*"
 
 [dev-packages]
 black = "*"
+ipykernel = "*"
 
 [requires]
 

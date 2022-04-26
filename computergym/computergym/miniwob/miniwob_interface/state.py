@@ -172,6 +172,7 @@ class DOMElement(object):
         self._targeted = raw_dom.get("recordingTarget", False)
         # Recurse on the children
         self._children = []
+
         for raw_child in raw_dom["children"]:
             self._children.append(
                 DOMElement(raw_child, parent=self, dom_elements=dom_elements)
@@ -248,7 +249,7 @@ class DOMElement(object):
     @property
     def ref(self):
         """Reference index (int).
-        The ref is posive for normal elements and negative for text nodes.
+        The ref is positive for normal elements and negative for text nodes.
         - Within the same episode, the ref of a DOM element remains the same
         - Exception: text nodes get a different ref at every time step
         - Ref number restarts at the beginning of each episode

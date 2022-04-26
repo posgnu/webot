@@ -1,5 +1,6 @@
 import sys
 import os
+from . import utils
 
 from gym.envs.registration import register
 

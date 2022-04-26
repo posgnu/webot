@@ -22,11 +22,14 @@ var genProblem = function() {
   var ITEMS = core.randf(0,1) < 0.5 ? ui_utils.PEOPLE_NAMES : ui_utils.COUNTRIES;
   core.shuffle(ITEMS);
 
-  var sel = div.append('select').attr('id', 'options').attr('style', 'width:150px;');
   var n = core.randi(3, 10);
+  var sel = div.append('select').attr('id', 'options').attr('style', 'width:150px;');
+  var option_list = []
   for(var i=0;i<n;i++) {
     sel.append('option').html(ITEMS[i]);
+    option_list.push(ITEMS[i]);
   }
+  sel.attr("class", option_list.join(","))
 
   var ix = core.randi(0, n); // ground truth index
   var gt_txt = ITEMS[ix];
