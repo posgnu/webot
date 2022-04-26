@@ -11,7 +11,8 @@ GOAL_DIM = 4
 
 
 class Net(nn.Module):
-    def __init__(self, vocab):
+    def __init__(self, vocab, dev):
+        self.dev = dev
         super(Net, self).__init__()
         self.cnn = torch.nn.Sequential(
             torch.nn.Conv2d(1, 32, 8, 4),
@@ -63,6 +64,7 @@ class Net(nn.Module):
                 for utter in utterance
             ]
         )
+        goal_embedding = goal_embedding.to(self.dev)
 
         combined_embedding = torch.cat((image_embedding, goal_embedding), 1)
 

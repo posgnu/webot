@@ -42,7 +42,7 @@ class BehaviorCloning:
         self.env_name = env_name
 
     def build_model(self, vocab):
-        self.m = Net(vocab)
+        self.m = Net(vocab, self.dev)
         self.m = self.m.to(self.dev)
 
     def restore(self):

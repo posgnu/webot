@@ -11,6 +11,9 @@ selenium = "*"
 regex = "*"
 computergym = {editable = true, path = "./computergym"}
 torchtext = "*"
+numpy = "*"
+torchtext = "*"
+gym = "*"
 
 [dev-packages]
 black = "*"
