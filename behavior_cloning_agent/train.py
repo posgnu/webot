@@ -3,7 +3,7 @@ import argparse
 from behavior_cloning import BehaviorCloning
 
 parser = argparse.ArgumentParser(description=".")
-parser.add_argument("--epochs", default=100, type=int, help=".")
+parser.add_argument("--epochs", default=300, type=int, help=".")
 
 args = parser.parse_args()
 

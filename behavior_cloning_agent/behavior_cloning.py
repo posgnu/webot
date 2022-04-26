@@ -87,7 +87,7 @@ class BehaviorCloning:
         # To numpy arrays
         states, actions = map(np.array, zip(*data))
         img_states = np.array(list(map(lambda x: x["img"], states)))
-        print(len(img_states))
+
         utterance_states = np.array(list(map(lambda x: x["utterance"], states)))
         utterance_states = [x.replace(" ", "") for x in utterance_states]
         self.build_model(self.build_vocab(utterance_states))
