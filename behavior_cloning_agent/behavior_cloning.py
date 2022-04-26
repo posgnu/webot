@@ -57,7 +57,7 @@ class BehaviorCloning:
         logging.info(f"Restore from {model_path}")
         self.m.load_state_dict(torch.load(model_path))
 
-    def build_vocab(self, utterances: list[str]):
+    def build_vocab(self, utterances: list):
         def yield_tokens(data_iter):
             for utterance in data_iter:
                 yield [utterance]
