@@ -4,7 +4,7 @@ import pickle
 import numpy as np
 import computergym
 
-NUM_OF_WORKERS = 10
+NUM_OF_WORKERS = 12
 NUM_OF_EPISODES = 5000
 
 DATA_FILE = "bot_data.gzip"
