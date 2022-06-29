@@ -13,6 +13,7 @@ computergym = {editable = true, path = "./computergym"}
 torchtext = "*"
 numpy = "*"
 gym = "*"
+pyautogui = "*"
 
 [dev-packages]
 black = "*"
