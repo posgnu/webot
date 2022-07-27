@@ -106,11 +106,13 @@ class MiniWoBEnv(MiniWoBEnvironment, gym.Env):
         # seeds = [1 for _ in range(len(self.instances))]
         miniwob_state = super().reset(seeds, mode, record_screenshots)
 
+        """
         for state in miniwob_state:
             if state:
                 state.set_screenshot(
                     state.screenshot.resize(self.obs_im_shape, Image.ANTIALIAS)
                 )
+        """
 
         return miniwob_state
 
@@ -156,11 +158,13 @@ class MiniWoBEnv(MiniWoBEnvironment, gym.Env):
 
         # Obtain screenshot & Resize image obs to match config
         # assert not None in states
+        """
         for i, state in enumerate(states):
             if state:
                 state.set_screenshot(
                     state.screenshot.resize(self.obs_im_shape) if not dones[i] else None
                 )
+        """
 
         return states, rewards, dones, info
 
@@ -179,7 +183,7 @@ if __name__ == "__main__":
 
             for ob in obs:
                 if ob is not None:
-                    ob.show()
+                    ob.screenshot.show()
             import time
 
             time.sleep(3)

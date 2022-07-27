@@ -3,12 +3,14 @@ import gzip
 import pickle
 import numpy as np
 import computergym
+import random
 
 NUM_OF_WORKERS = 12
 NUM_OF_EPISODES = 5000
 
 DATA_FILE = "bot_data.gzip"
 DATA_DIR = "../data"
+
 
 
 def find_element_by_tag(tag: str, dom_elements: list):
@@ -46,7 +48,6 @@ def get_click_point(element) -> tuple[int, int]:
         element.height,
     )
     return left + width / 2, top + height / 2
-
 
 class Recorder:
     def __init__(self, env_name: str) -> None:

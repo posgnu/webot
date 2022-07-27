@@ -254,12 +254,15 @@ def run_crnn(bboxes: list):
     converter = utils.strLabelConverter(alphabet)
 
     transformer = dataset.resizeNormalize((100, 32))
+    text_list = []
     for bbox in bboxes:
         left = min(bbox[:, 0])
         top = min(bbox[:, 1])
         right = max(bbox[:, 0])
         bottom = max(bbox[:, 1])
-        Image.open(img_path).crop((left, top, right, bottom)).show()
+
+        # show image for debugging
+        # Image.open(img_path).crop((left, top, right, bottom)).show()
 
         image = (
             Image.open(img_path)
@@ -273,9 +276,6 @@ def run_crnn(bboxes: list):
             )
             .convert("L")
         )
-        import code
-
-        code.interact(local=locals())
 
         image = transformer(image)
         if torch.cuda.is_available():
@@ -293,8 +293,12 @@ def run_crnn(bboxes: list):
         raw_pred = converter.decode(preds.data, preds_size.data, raw=True)
         sim_pred = converter.decode(preds.data, preds_size.data, raw=False)
         print("%-20s => %-20s" % (raw_pred, sim_pred))
+        text_list.append((sim_pred, bbox))
+
+    return text_list
 
 
 if __name__ == "__main__":
     bboxes = run_craft()
-    run_crnn(bboxes)
+    text_list = run_crnn(bboxes)
+    print(text_list)
